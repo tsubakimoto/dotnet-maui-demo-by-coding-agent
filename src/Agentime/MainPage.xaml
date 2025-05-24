@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:dev.tsubakimoto.Agentime.ViewModels"
+             x:Class="dev.tsubakimoto.Agentime.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ClockViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid Padding="20" RowSpacing="20" RowDefinitions="Auto,Auto,Auto">
+        <!-- Timezone Selection -->
+        <Frame Grid.Row="0" 
+               Padding="10" 
+               BorderColor="{AppThemeBinding Light=Gray, Dark=DarkGray}" 
+               CornerRadius="8"
+               HasShadow="False">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Select Timezone" FontAttributes="Bold" />
+                <Picker ItemsSource="{Binding AvailableTimeZones}" 
+                        SelectedItem="{Binding SelectedTimeZone}" 
+                        HorizontalOptions="Fill"/>
+            </VerticalStackLayout>
+        </Frame>
+        
+        <!-- Theme Toggle -->
+        <Button Grid.Row="1" 
+                Text="{Binding IsDarkMode, StringFormat='Switch to {0:Light;Dark} Mode'}" 
+                Command="{Binding ToggleThemeCommand}" 
+                HorizontalOptions="Fill"/>
+                
+        <!-- Clock Display -->
+        <VerticalStackLayout Grid.Row="2" HorizontalOptions="Center" Margin="0,20,0,0">
+            <Label Text="Agentime" 
+                   FontSize="26" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
+            
+            <Label Text="{Binding CurrentTime, StringFormat='{0:HH:mm:ss}'}" 
+                   FontSize="72" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"/>
+            
+            <Label Text="{Binding CurrentTime, StringFormat='{0:yyyy/MM/dd}'}" 
+                   FontSize="22" 
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+            
+            <Label Text="{Binding SelectedTimeZone}" 
+                   FontSize="16" 
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
