@@ -20,11 +20,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-          cache: true
 
       - name: Install .NET MAUI workload
         run: dotnet workload install maui
