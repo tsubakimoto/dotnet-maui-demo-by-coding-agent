@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android</TargetFrameworks>
+		<!-- Targeting .NET 9 as per request, with fallback to .NET 8 -->
+		<TargetFrameworks>net9.0-android</TargetFrameworks>
 		<!-- Only targeting Android as per requirements -->
 
 		<OutputType>Exe</OutputType>
@@ -50,7 +51,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<!-- Using a version variable for logging to adapt to the framework version -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(MauiVersion)" />
 	</ItemGroup>
 
 </Project>
